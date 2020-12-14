@@ -1,0 +1,206 @@
+<!--
+ * javascript
+ *
+ * Weather APP
+ *
+ * coded by Giomayra Rosales
+ * started at 11/11/2020
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Weather APP</title>
+    <!-- FONTS-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@8.1.0/dist/css/autoComplete.min.css">
+
+    <link rel="stylesheet" href="./css/styleToolPrettier.css" />
+    <link rel="stylesheet" href="./css/style2.css" />
+    <!--  SCRIPT-->
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@8.1.0/dist/js/autoComplete.min.js"></script>
+
+    <script src="./autoComplete.js"></script>
+    <script src="./index.js" type="module"></script>
+
+    <!-- <script src="module/Chart.js-2.9.4/dist/chart.js"></script>-->
+ <!--   <script type="module" src="./apis/openweather/openWeather.js"></script>-->
+
+
+    <script src="js/script.js" type="module"></script>
+    <script src="js/script1.js" type="module"></script>
+
+    <style>
+       .canvas2 {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+    <body>
+        <div class="body-content">
+            <!--common/header/-->
+            <header id="header" class="parallax-wrap">
+                <nav>
+                    <ul id="small-toolbar" class="parallax-toolbar nav-top">
+                        <li>
+                            <input type="input" id="cityName" name="Search your current city">
+                       </li>
+                        <li>
+                            <button type="button" id="search">Search</button>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <div id="hero-weather" class="parallax-image-wrap">
+                <div class="parallax-background-container">
+                    <div class="parallax-background-image"></div>
+                </div>
+                <div class="parallax-weather">
+                    <div>
+                        <span class="parallax-temp"></span><span class="parallax-temp-unit unit-temperature"></span>
+                    </div>
+                    <div class="parallax-weather-wrap2">
+                        <span class="parallax-weatherId icon1"></span><span class="parallax-overview"></span>
+                    </div>
+                </div>
+                <div id="large-toolbar" class="parallax-toolbar-bottom">
+                    <h1 id="large-title" class="large-title"></h1>
+                </div>
+                <div class="weaphoto-article"></div>
+            </div>
+
+            <div class="popup" id="popupmodal-nowlocation">
+                <div class="popup-wrap">
+                    <div class="popup-wrap2">
+                        <div class="modal-normal">
+                            <h3>Search for weather in your current location by GPS</h3>
+                            <div class="width-wrap2" style="position:relative;">
+                                <div id="nowlocation" class="submit4" name="/nowlocation">Search</div>
+                            </div>
+                            <!--GR COMMENTED-->
+                           <!-- <div id="popcancel" class="modal-link-button">Close</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/wow! modal-->
+            <!--/common/header-->
+
+            <input type="hidden" id="weatherAjax" data-type="" data-locale="en" data-weather-type="wowarea" data-weaUrl="EU_BE_VLG" data-unit-temperature="Celsius" data-unit-distance="km" data-unit-speed="m/s" data-unit-pressure="hPa" data-unit-hour="24H" data-key="jSK7VXyUPgYdLQnn7Hrz23icCNn69PctxnIJgfHp" data-week="">
+
+                <section class="weather-parallax-wrap">
+
+                    <div id="current-weather" class="parallax-con-wrap">
+                        <article class="weather-overview wrap-shadow">
+                            <h2>Today weather</h2>
+                            <div>
+                                <span class="">Max</span>
+                                <span class="max focusTempMax"></span>
+                                <span class="">Min</span>
+                                <span class="min focusTempMin"></span>
+                            </div>
+                            <div class="des-wrap">
+                                <span class="icon1 focusWeatherId"></span>
+                                <span class="des focusWeatherText"></span>
+                            </div>
+
+                            <div class="place-name">Flanders</div>
+                            <div class="wow-wrap " id="wowcity" name="2800931"><div class="icon1 icon-bookmark"></div></div>
+                            <div class="weather-update">Fri, Dec. 4 5:40</div>
+                        </article>
+                        <article id="one-current-weather" class="weather-currently wrap-shadow">
+                            <h2>Current weather</h2>
+                            <div class="gr-flex3">
+                                <div>
+                                    <span class="focus icon1 icon-aptemperature"></span>
+                                    <h3><span class="wea-des">Apparent Temp.</span><span class="wea-val cu_1"></span><span class="wea-unit unit-temperature"></span></h3>
+                                </div>
+                                <div>
+                                    <span class="focus icon1 icon-rainvolume"></span>
+                                    <h3><span class="wea-des">Precip Intensity</span><span class="wea-val cu_2"></span><span class="wea-unit unit-rain"></span></h3>
+                                </div>
+                                <div>
+                                    <span class="focus icon1 icon-clouds"></span>
+                                    <h3><span class="wea-des">Cloud cover</span><span class="wea-val cu_3"></span><span class="wea-unit unit-percent"></span></h3>
+                                </div>
+                                <div>
+                                    <span class="focus icon1 icon-humidity"></span>
+                                    <h3><span class="wea-des">Humidity</span><span class="wea-val cu_4"></span><span class="wea-unit unit-percent"></span></h3>
+                                </div>
+                                <div>
+                                    <span class="focus icon1 icon-dew-point"></span>
+                                    <h3><span class="wea-des">Dew point</span><span class="wea-val cu_5"></span><span class="wea-unit unit-temperature"></span></h3>
+                                </div>
+                                <div>
+                                    <span class="focus icon1 icon-pressure"></span>
+                                    <h3><span class="wea-des">Pressure</span><span class="wea-val cu_6"></span><span class="wea-unit unit-pressure"></span></h3>
+                                </div>
+                                <div>
+                                    <span class="focus icon1 icon-wind-2"></span>
+                                    <h3><span class="wea-des">Wind</span><span class="parallax-arrow icon1 icon-wind"></span><span class="wea-val cu_7 margin-left1"></span><span class="wea-unit unit-speed"></span></h3>
+                                </div>
+                                <div class="uvIndex-wrap">
+                                    <span class="focus icon1 icon-sun"></span>
+                                    <h3><span class="wea-des">UV index</span><span class="wea-val cu_8"></span><span class="wea-unit unit-uvindex"></span></h3>
+                                </div>
+                                <div class="visibility-wrap">
+                                    <span class="focus icon1 icon-visibility"></span>
+                                    <h3><span class="wea-des">Visibility</span><span class="wea-val cu_9"></span><span class="wea-unit unit-visibility"></span></h3>
+                                </div>
+                                <div class="null-wrap"></div>
+                            </div>
+                        </article>
+                    </div>
+                    <article class="weather-common-wrap wrap-shadow">
+                        <h2>48-hour weather<span class="weather24-more" id="modal-weather-detail" data-weather-detail-modal="">See more<span class="icon1 icon-up"></span></span></h2>
+                        <div class="gr-wide">
+                           <canvas id="canvas1" class="canvas1"></canvas>
+                        </div>
+                    </article>
+
+                    <div class="parallax-con-wrap">
+                        <article class="weather-rain wrap-shadow">
+                            <h2>Week weather</h2>
+                            <canvas id="canvas3" class="canvas1"></canvas>
+                        </article>
+
+                        <article class="weather-weekly wrap-shadow">
+                            <h2>Flanders 1 week weather</h2>
+                            <div class="gr-wide4">
+                                <canvas id="canvas2" class="canvas2"></canvas>
+                                <button id="randomizeData">Randomize Data</button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+        </div>
+
+
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+       <!-- <script  type="text/javascript" src="https://www.jsdelivr.com/package/npm/chart.js?path=dist"></script>-->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+      <!--  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.22.2/dist/moment.min.js"></script>-->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+
+
+    </body>
+</html>
+
+
+
+
+
